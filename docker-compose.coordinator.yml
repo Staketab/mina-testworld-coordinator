@@ -16,7 +16,8 @@ services:
     environment: 
       UPTIME_PRIVKEY_PASS: ${UPTIME_PRIVKEY_PASS}
       MINA_LIBP2P_PASS: ${MINA_LIBP2P_PASS}
-      RAYON_NUM_THREADS_COORD: ${RAYON_NUM_THREADS_COORD}
+      RAYON_NUM_THREADS: ${RAYON_NUM_THREADS_COORD}
+      MINA_CLIENT_TRUSTLIST: ${WORKER_IP}
     volumes:
       - "${CONFIG_DIRECTORY}:/root/.mina-config"
       - "${KEYS_PATH}:/root/keys:ro"
