@@ -53,7 +53,7 @@ logs:
 	sudo docker logs --follow coordinator -f --tail 1000
 
 worker-logs:
-	$(DOCKER_COMPOSE_COMMAND) logs -f
+	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_WORKER} logs -f
 
 status:
 	sudo docker exec -it coordinator mina client status
