@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  mina:
+    image: ${MINA}
+    container_name: coordinator
+    ports:
+      - "6060:6060"
+      - "0.0.0.0:8302:8302"
+      - "0.0.0.0:8301:8301"
+      - "127.0.0.1:3085:3085"
+      - "0.0.0.0:3089:3089"
+    restart: always
+    env_file:
+      - $HOME/mina-testworld-coordinator/.env
+    environment: 
+      UPTIME_PRIVKEY_PASS: ${UPTIME_PRIVKEY_PASS}
+      MINA_LIBP2P_PASS: ${MINA_LIBP2P_PASS}
+      RAYON_NUM_THREADS_COORD: ${RAYON_NUM_THREADS_COORD}
+    volumes:
+      - "${CONFIG_DIRECTORY}:/root/.mina-config"
+      - "${KEYS_PATH}:/root/keys:ro"
+      - "./trustlist.sh:/entrypoint.d/trustlist.sh"
+    command: >
+      daemon
+        --peer-list-url ${PEER_LIST}
+        --uptime-url ${UPTIME_URL}
+        --uptime-submitter-key ${KEYPATH}
+        --libp2p-keypair ${LIBP2P_KEYPATH}
+        --node-status-url ${NODE_STATUS_URL}
+        --node-error-url ${NODE_ERROR_URL}
+        --itn-graphql-port 3089
+        --external-ip ${EXTERNAL_IP}
+        --config-directory ${CONFIG_DIRECTORY}
+        --run-snark-coordinator ${COORDINATOR_KEY}
+        --snark-worker-fee ${FEE}
+        --work-selection ${WORK_SELECTION}
+        --metrics-port 6060
+        --enable-peer-exchange  true
+        --log-precomputed-blocks true
+        --max-connections 200
+        --file-log-rotations 500
+        --log-json
+        --log-snark-work-gossip true
+        --internal-tracing
+        --insecure-rest-server
+        --log-level Debug
+        --file-log-level Debug
+        ${STOP_TIME}
+    networks:
+      - mina
+          
+networks:
+  mina:
+    driver: bridge
