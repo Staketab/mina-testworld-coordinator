@@ -28,6 +28,7 @@ services:
         --libp2p-keypair ${LIBP2P_KEYPATH}
         --node-status-url ${NODE_STATUS_URL}
         --node-error-url ${NODE_ERROR_URL}
+        --itn-keys ${ITN_KEYS}
         --itn-graphql-port 3089
         --external-ip ${EXTERNAL_IP}
         --config-directory ${CONFIG_DIRECTORY}
