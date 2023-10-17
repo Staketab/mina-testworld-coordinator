@@ -20,7 +20,6 @@ services:
     volumes:
       - "${CONFIG_DIRECTORY}:/root/.mina-config"
       - "${KEYS_PATH}:/root/keys:ro"
-      - "./trustlist.sh:/entrypoint.d/trustlist.sh"
     command: >
       daemon
         --peer-list-url ${PEER_LIST}
@@ -40,7 +39,6 @@ services:
         --log-precomputed-blocks true
         --max-connections 200
         --file-log-rotations 500
-        --log-json
         --log-snark-work-gossip true
         --internal-tracing
         --insecure-rest-server
@@ -49,7 +47,20 @@ services:
         ${STOP_TIME}
     networks:
       - mina
-          
+
+  cron:
+    image: ${MINA}
+    container_name: cron
+    env_file:
+      - $HOME/mina-testworld-coordinator/.env
+    environment: 
+      WORKER_IP: ${WORKER_IP}
+    volumes:
+      - "./trustlist.sh:/entrypoint.d/trustlist.sh"
+    command: sh -c "sleep 120 && /entrypoint.d/trustlist.sh"
+    depends_on:
+      - mina
+
 networks:
   mina:
     driver: bridge

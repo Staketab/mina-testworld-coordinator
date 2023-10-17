@@ -50,7 +50,7 @@ nodex-down:
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_NODE_EXPORTER} down
 
 logs:
-	sudo docker logs --follow coordinator -f --tail 1000
+	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_COORDINATOR} logs -f
 
 worker-logs:
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_WORKER} logs -f
