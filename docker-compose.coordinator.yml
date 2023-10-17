@@ -49,19 +49,6 @@ services:
     networks:
       - mina
 
-  cron:
-    image: ${MINA}
-    container_name: cron
-    env_file:
-      - $HOME/mina-testworld-coordinator/.env
-    environment: 
-      WORKER_IP: ${WORKER_IP}
-    volumes:
-      - "./trustlist.sh:/entrypoint.d/trustlist.sh"
-    command: sh -c "sleep 120 && /entrypoint.d/trustlist.sh"
-    depends_on:
-      - mina
-
 networks:
   mina:
     driver: bridge

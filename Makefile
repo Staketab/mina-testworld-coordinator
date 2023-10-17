@@ -13,7 +13,7 @@ else
 endif
 
 # --------------------------
-.PHONY: keystore-libp2p keystore-uptime rule setup coord work nodex coord-down work-down nodex-down logs status
+.PHONY: keystore-libp2p keystore-uptime rule setup coord work nodex coord-down work-down nodex-down logs status trust
 
 keystore-libp2p:
 	sudo docker run -ti --rm --entrypoint=mina --volume ${HOME}/keys:/root/keys ${MINA} libp2p generate-keypair --privkey-path /root/keys/libp2p-keys
@@ -57,3 +57,6 @@ worker-logs:
 
 status:
 	sudo docker exec -it coordinator mina client status
+
+trust:
+	bash ./trustlist.sh
