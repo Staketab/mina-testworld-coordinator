@@ -1,5 +1,5 @@
 # MINA NODE SETUP
-Setup Mina Coordinator node for Testworld.
+Setup Mina Coordinator node.
 
 ## 1. Clone repository:
 
@@ -8,7 +8,7 @@ git clone https://github.com/Staketab/mina-testworld-coordinator.git
 cd mina-testworld-coordinator
 ```
 
-## 2. Generate LIB_P2P and UPTIME Keystores
+## 2. Generate LIB_P2P Keystores
 ```bash
 make setup
 ```
