@@ -34,7 +34,7 @@ services:
         --log-snark-work-gossip true
         --internal-tracing
         --insecure-rest-server
-        --log-level Debug
+        --log-level Info
         --file-log-level Debug
     networks:
       - mina

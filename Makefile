@@ -20,12 +20,15 @@ keystore-libp2p:
 keystore-uptime:
 	sudo docker run -ti --rm --entrypoint=mina-generate-keypair --volume ${HOME}/keys:/root/keys ${MINA} --privkey-path /root/keys/my-wallet
 
+dir:
+	mkdir -p ${CONFIG_DIRECTORY}
 rule:
 	sudo chmod 700 ${KEYS_PATH}
 	sudo chmod 600 ${LIBP2P_KEYPATH}
 	sudo chmod 600 ${KEYPATH}
 
 setup:		    ## Generate LIB_P2P and UPTIME Keystores.
+	@make dir
 	@make keystore-libp2p
 	@make keystore-uptime
 	@make rule
