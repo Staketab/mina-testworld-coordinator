@@ -28,7 +28,7 @@ services:
         --snark-worker-fee ${FEE}
         --work-selection ${WORK_SELECTION}
         --metrics-port 6060
-        --enable-peer-exchange  true
+        --enable-peer-exchange true
         --max-connections 200
         --file-log-rotations 500
         --log-snark-work-gossip true
@@ -36,9 +36,3 @@ services:
         --insecure-rest-server
         --log-level Info
         --file-log-level Debug
-    networks:
-      - mina
-
-networks:
-  mina:
-    driver: bridge
