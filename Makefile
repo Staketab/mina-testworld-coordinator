@@ -34,7 +34,7 @@ setup:		    ## Generate LIB_P2P and UPTIME Keystores.
 	@make rule
 
 coord:
-	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_COORDINATOR} up -d
+	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_COORDINATOR} up -d --force-recreate
 
 worker:
 	bash ./workers.sh

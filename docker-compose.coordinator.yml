@@ -3,7 +3,6 @@ services:
     image: ${MINA}
     container_name: coordinator
     ports:
-      - "6060:6060"
       - "0.0.0.0:8302:8302"
       - "0.0.0.0:8301:8301"
       - "127.0.0.1:3085:3085"
@@ -27,12 +26,10 @@ services:
         --run-snark-coordinator ${COORDINATOR_KEY}
         --snark-worker-fee ${FEE}
         --work-selection ${WORK_SELECTION}
-        --metrics-port 6060
         --enable-peer-exchange true
         --max-connections 200
         --file-log-rotations 500
         --log-snark-work-gossip true
-        --internal-tracing
         --insecure-rest-server
         --log-level Info
         --file-log-level Debug
